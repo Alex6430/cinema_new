@@ -1,0 +1,25 @@
+{% extends "cinema_theater/seance.html" %}
+
+{% block pay %}
+
+    <div class="jumbotron-fluid text-center" style="background: snow">
+        {#        {% for tic in arg %}#}
+        <h3>{{ args.film }}</h3>
+        <h3>{{ args.seance_date }} {{ args.seance_time }}</h3>
+        {#        <h3>{{ args.seance_time }}</h3>#}
+        <h3>{{ args.room }}</h3>
+        <h3>ряд {{ args.row }} место {{ args.seat }}</h3>
+        {#        <h3>{{ args.seat }}</h3>#}
+        {#        {% endfor %}#}
+        {#    <h3>{{ user.username }}</h3>#}
+    </div>
+    <div class="text-center">
+        <a href="{% url 'bin' id_user=user.id %}" class="btn btn-warning">корзина</a>
+        <a href="{% url 'seance' id_room=args.room_id id_seance=args.seance_id %}" class="btn btn-warning">продолжить
+            выбор</a>
+    </div>
+
+
+
+
+{% endblock %}

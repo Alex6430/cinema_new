@@ -1,0 +1,58 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block seance %}
+    <div class="jumbotron text-center" style="background: red">
+        <h3>{{ args.name }}</h3>
+    </div>
+{#    {% for row in args.rows %}#}
+{#        <div class="container-fluid" style="background: gray">#}
+{#            <div class="row text-center">#}
+{#                <div class="col">#}
+{#                    <button type="button" class="btn btn-lg btn-primary" disabled>{{ row }} ряд</button>#}
+{#                    {% for seat in args.cols %}#}
+                        {#                            {% for row1,seat1 in args.bool_seat %}#}
+                        {#                                {% for row1 in row_seat|first %}#}
+                        {#                                    <h3>{{ row1 }}</h3>#}
+{##}
+{#                        {% if row in args.bool_rows and seat in args.bool_cols %}#}
+{#                            <a type="button" class="btn btn-outline-warning" name="{{ row }}{{ seat }}"#}
+{#                               disabled> {{ seat }}</a>#}
+{#                        {% else %}#}
+{#                            <a href="{% url 'pay' row=row seat=seat id_room=args.room id_seance=args.seance id_user=user.id %}"#}
+{#                               class="btn btn-outline-warning"#}
+{#                               role="button"> {{ seat }}</a>#}
+{#                        {% endif %}#}
+                        {#                                {% endfor %}#}
+                        {#                            {% endfor %}#}
+{#                    {% endfor %}#}
+{#                    <div class="w-100"></div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endfor %}#}
+
+    {% for row1,seat1 in args.bool_seat_free %}
+        <div class="container-fluid" style="background: gray">
+            <div class="row text-center">
+                <div class="col">
+                    <button type="button" class="btn btn-lg btn-primary" disabled>{{ row1 }} ряд</button>
+                    {% for seat in seat1 %}
+                        {% if not seat %}
+                            <a type="button" class="btn btn-outline-warning"
+                               disabled> # </a>
+                        {% else %}
+                            <a href="{% url 'pay' row=row1 seat=seat id_room=args.room id_seance=args.seance id_user=user.id %}"
+                               class="btn btn-outline-warning"
+                               role="button"> {{ seat }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="w-100"></div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% block pay %}
+    {% endblock %}
+
+{% endblock %}

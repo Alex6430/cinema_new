@@ -1,0 +1,33 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block cinema %}
+
+    <main role="main">
+        <div class="jumbotron" style="background: plum">
+            <h1 style="size: auto">Список фильмов</h1>
+        </div>
+        <div class="jumbotron" style="background: gray">
+            <div class="row">
+                {% for post in object_list %}
+                    <div class="col-md-4">
+                        <div class="jumbotron-fluid text-center" style="background: red">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.specification }}</p>
+                            {#                            <p><a class="btn btn-secondary" href="#" role="button">подробнее»</a></p>#}
+                            {#                            <p><a class="btn btn-secondary" aria-pressed="true" data-toggle="modal"#}
+                            {#                                  data-target="#ticketModal">расписание и билеты</a></p>#}
+                            {% if user.username %}
+                                <a href="{% url 'ticket' id=post.id_film %}" class="btn btn-outline-warning" role="button"
+                               aria-pressed="true">расписание и билеты</a>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-warning text-center"
+                               >Войдите чтобы продолжить выбор билета</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

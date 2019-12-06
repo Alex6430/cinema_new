@@ -1,0 +1,28 @@
+{% extends "mainApp/wrapper.html" %}
+
+{% block ticket %}
+    <div class="jumbotron" style="background: red">
+        {#        {% for tic in arg %}#}
+        <h3>{{ args.name }}</h3>
+
+        {#        {% endfor %}#}
+    </div>
+    <div class="jumbotron" style="background: gray">
+        <div class="row">
+            {% for arg in args.price %}
+                <div class="col-md-4">
+                    {#                        <div class="jumbotron" style="background: red">#}
+                    {#                            <h2>{{ arg.field_date_field }}</h2>#}
+                    {#                            <h2>{{ arg.field_time_field }}</h2>#}
+                    {#                            <p>{{ post.specification }}</p>#}
+                    {#                            <p><a class="btn btn-secondary" href="#" role="button">подробнее»</a></p>#}
+                    {#                            <p><a class="btn btn-secondary" aria-pressed="true" data-toggle="modal"#}
+                    {#                                  data-target="#ticketModal">расписание и билеты</a></p>#}
+                    <a href="{% url 'seance' id_room=arg.id_room.id_room id_seance=arg.id_seance %}" class="btn btn-outline-warning" role="button"
+                       aria-pressed="true">{{ arg.field_date_field }} {{ arg.field_time_field }}</a>
+                    {#                        </div>#}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
